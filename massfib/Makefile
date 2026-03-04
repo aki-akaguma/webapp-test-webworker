@@ -31,15 +31,15 @@ bundle-desktop:
 #	dx bundle --desktop --release --features backend_next
 
 bundle-android-aarch64:
-	@rm -fr "target/dx"
+	@rm -fr "../target/dx"
 	dx bundle --android --release --target=aarch64-linux-android
 	./scripts/apk-icon-assemble-r.sh test-webworker aarch64 resources/android
 
 bundle-android-x86_64:
-	@rm -fr "target/dx"
+	@rm -fr "../target/dx"
 	dx bundle --android --release --target=x86_64-linux-android
 	./scripts/apk-icon-assemble-r.sh test-webworker x86_64 resources/android
 
 bundle-android-wva:
-	@rm -fr "target/dx"
-	./scripts/wva-apk-icon-assemble-r.sh test-webworker resources/android ./scripts/android-webview-assets-params.toml
+	@rm -fr "../target/dx"
+	./scripts/wva-apk-icon-assemble-r.sh test-webworker massfib/resources/android massfib/scripts/android-webview-assets-params.toml

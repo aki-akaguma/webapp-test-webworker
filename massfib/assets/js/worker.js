@@ -3,24 +3,27 @@ const { greet, add, fibonacci } = wasm_bindgen;
 
 onmessage = (e) => {
     console.log("Worker: Message recived");
-    let a = e.data[0];
-    let b = e.data[1];
-    let c = e.data[2];
+    let sw = e.data[0];
+    let a = e.data[1];
+    let b = e.data[2];
 
     (async () => {
         await wasm_bindgen("pkg/wasm-worker_bg.wasm")
 
-        const result_add = add(a, b);
-        if (isNaN(result_add)) {
-            postMessage("Please write two numbers");
-            return;
-        }
-        const result_fibo = fibonacci(c);
-        if (isNaN(result_fibo)) {
-            postMessage("Please write three numbers");
-            return;
+        if (sw == 1) {
+            const result_add = add(a, b);
+            if (!isNaN(result_add)) {
+                postMessage([1, a, b, result_add]);
+                return;
+            }
+        } else if (sw == 2) {
+            const result_fibo = fibonacci(a);
+            if (!isNaN(result_fibo)) {
+                postMessage([2, a, b, result_fibo]);
+                return;
+            }
         }
         //console.log("Worker: Posting message back to main script");
-        postMessage([result_add, result_fibo]);
+        postMessage("Please write three numbers: [sw, a, b] sw: 1 or 2");
     })();
 };
