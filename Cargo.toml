@@ -4,3 +4,8 @@ members = [
   "massfib",
   "wasm-worker",
 ]
+
+[profile.release]
+strip = "debuginfo"
+opt-level = "s"
+lto = true
