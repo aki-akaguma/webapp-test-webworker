@@ -24,6 +24,12 @@ list:
 clean:
 	cargo clean
 
+check:
+	make -C $(MAIN_BASE) check
+
+clippy:
+	make -C $(MAIN_BASE) clippy
+
 build-worker:
 	make -C $(WASM_WORKER_BASE) build
 	cp -a $(WASM_WORKER_JS) $(WASM_WORKER_WASM) $(MAIN_ASSETS_PKG)/

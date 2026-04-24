@@ -90,50 +90,50 @@ async fn single_proc(
     //
     let js = r#"{ await kick_worker(dioxus); }"#;
     let mut eval = document::eval(js);
-    dioxus_logger::tracing::debug!("PASS 001");
+    dioxus::logger::tracing::debug!("PASS 001");
     //
     let arg = [1, 2, 3];
-    dioxus_logger::tracing::debug!("send 1: {arg:?}");
+    dioxus::logger::tracing::debug!("send 1: {arg:?}");
     eval.send(arg).unwrap();
     let result = eval.recv::<Vec<i32>>().await.unwrap();
     add_r.set(result[3]);
     //
     let arg = [2, 37, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let result = eval.recv::<Vec<i32>>().await.unwrap();
     fibo37_r.set(result[3]);
     //
     let arg = [2, 38, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let result = eval.recv::<Vec<i32>>().await.unwrap();
     fibo38_r.set(result[3]);
     //
     let arg = [2, 39, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let result = eval.recv::<Vec<i32>>().await.unwrap();
     fibo39_r.set(result[3]);
     //
     let arg = [2, 40, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let result = eval.recv::<Vec<i32>>().await.unwrap();
     fibo40_r.set(result[3]);
     //
     let arg = [2, 41, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let result = eval.recv::<Vec<i32>>().await.unwrap();
     fibo41_r.set(result[3]);
     //
-    dioxus_logger::tracing::debug!("PASS 002");
+    dioxus::logger::tracing::debug!("PASS 002");
     //
     eval.send([9]).unwrap();
-    dioxus_logger::tracing::debug!("PASS 004");
+    dioxus::logger::tracing::debug!("PASS 004");
     let _ = eval.recv::<String>().await.unwrap();
-    dioxus_logger::tracing::debug!("PASS 005");
+    dioxus::logger::tracing::debug!("PASS 005");
 }
 
 async fn multi_proc(
@@ -153,29 +153,29 @@ async fn multi_proc(
     //
     let js = r#"{ await kick_worker(dioxus); }"#;
     let mut eval = document::eval(js);
-    dioxus_logger::tracing::debug!("PASS 001");
+    dioxus::logger::tracing::debug!("PASS 001");
     //
     let arg = [1, 2, 3];
-    dioxus_logger::tracing::debug!("send 1: {arg:?}");
+    dioxus::logger::tracing::debug!("send 1: {arg:?}");
     eval.send(arg).unwrap();
     //
     let arg = [2, 41, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let arg = [2, 40, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let arg = [2, 39, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let arg = [2, 38, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     let arg = [2, 37, 0];
-    dioxus_logger::tracing::debug!("send 2: {arg:?}");
+    dioxus::logger::tracing::debug!("send 2: {arg:?}");
     eval.send(arg).unwrap();
     //
-    dioxus_logger::tracing::debug!("PASS 002");
+    dioxus::logger::tracing::debug!("PASS 002");
     //
     for i in 0..6 {
         let result = eval.recv::<Vec<i32>>().await.unwrap();
@@ -196,10 +196,10 @@ async fn multi_proc(
                 fibo41_r.set(result[3]);
             }
         }
-        dioxus_logger::tracing::debug!("PASS 003: {i}");
+        dioxus::logger::tracing::debug!("PASS 003: {i}");
     }
     eval.send([9]).unwrap();
-    dioxus_logger::tracing::debug!("PASS 004");
+    dioxus::logger::tracing::debug!("PASS 004");
     let _ = eval.recv::<String>().await.unwrap();
-    dioxus_logger::tracing::debug!("PASS 005");
+    dioxus::logger::tracing::debug!("PASS 005");
 }
