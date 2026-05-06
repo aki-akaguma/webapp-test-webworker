@@ -4,6 +4,12 @@ all:
 clean:
 	cargo clean
 
+check:
+	cargo check
+
+clippy:
+	cargo clippy
+
 build:
 	wasm-pack build --dev --no-pack --target no-modules --out-dir ./dist/pkg --out-name wasm-worker
 
