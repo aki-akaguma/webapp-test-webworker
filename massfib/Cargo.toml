@@ -2,7 +2,7 @@
 name = "test-webworker"
 version = "0.1.2"
 authors = ["aki <aki.akaguma@hotmail.com>"]
-edition = "2021"
+edition = "2024"
 description = """
 Sample of web worker
 """
